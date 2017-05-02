@@ -18,6 +18,8 @@
 		2835E64D1EB7B3250034EE73 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2835E6481EB7B2E50034EE73 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2835E64E1EB7B3250034EE73 /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2835E6491EB7B2E50034EE73 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2835E6501EB7C0BA0034EE73 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2835E64F1EB7C0BA0034EE73 /* MapKit.framework */; };
+		2835E6531EB8FF180034EE73 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2835E6521EB8FF180034EE73 /* AddReminderViewController.m */; };
+		2835E6561EB92E230034EE73 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2835E6551EB92E230034EE73 /* LocationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +50,10 @@
 		2835E6481EB7B2E50034EE73 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		2835E6491EB7B2E50034EE73 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
 		2835E64F1EB7C0BA0034EE73 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2835E6511EB8FF180034EE73 /* AddReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReminderViewController.h; sourceTree = "<group>"; };
+		2835E6521EB8FF180034EE73 /* AddReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderViewController.m; sourceTree = "<group>"; };
+		2835E6541EB92E230034EE73 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		2835E6551EB92E230034EE73 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,13 +90,9 @@
 		2835E62F1EB7AC120034EE73 /* LocationReminder */ = {
 			isa = PBXGroup;
 			children = (
-				2835E6331EB7AC120034EE73 /* AppDelegate.h */,
-				2835E6341EB7AC120034EE73 /* AppDelegate.m */,
-				2835E6361EB7AC120034EE73 /* ViewController.h */,
-				2835E6371EB7AC120034EE73 /* ViewController.m */,
-				2835E6391EB7AC120034EE73 /* Main.storyboard */,
-				2835E63C1EB7AC120034EE73 /* Assets.xcassets */,
-				2835E63E1EB7AC120034EE73 /* LaunchScreen.storyboard */,
+				2835E6571EB939550034EE73 /* Model */,
+				2835E6581EB9395F0034EE73 /* Controller */,
+				2835E6591EB939760034EE73 /* View */,
 				2835E6411EB7AC120034EE73 /* Info.plist */,
 				2835E6301EB7AC120034EE73 /* Supporting Files */,
 			);
@@ -113,6 +115,38 @@
 				2835E6491EB7B2E50034EE73 /* Parse.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2835E6571EB939550034EE73 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2835E6331EB7AC120034EE73 /* AppDelegate.h */,
+				2835E6341EB7AC120034EE73 /* AppDelegate.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2835E6581EB9395F0034EE73 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2835E6361EB7AC120034EE73 /* ViewController.h */,
+				2835E6371EB7AC120034EE73 /* ViewController.m */,
+				2835E6541EB92E230034EE73 /* LocationController.h */,
+				2835E6551EB92E230034EE73 /* LocationController.m */,
+				2835E6511EB8FF180034EE73 /* AddReminderViewController.h */,
+				2835E6521EB8FF180034EE73 /* AddReminderViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		2835E6591EB939760034EE73 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2835E6391EB7AC120034EE73 /* Main.storyboard */,
+				2835E63C1EB7AC120034EE73 /* Assets.xcassets */,
+				2835E63E1EB7AC120034EE73 /* LaunchScreen.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +227,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2835E6561EB92E230034EE73 /* LocationController.m in Sources */,
+				2835E6531EB8FF180034EE73 /* AddReminderViewController.m in Sources */,
 				2835E6381EB7AC120034EE73 /* ViewController.m in Sources */,
 				2835E6351EB7AC120034EE73 /* AppDelegate.m in Sources */,
 				2835E6321EB7AC120034EE73 /* main.m in Sources */,
