@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,8 +21,50 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NtY-c2-goR">
+                                <rect key="frame" x="56" y="100" width="263" height="467"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FX8-vF-owX">
+                                <rect key="frame" x="154" y="575" width="67" height="30"/>
+                                <state key="normal" title="My house"/>
+                                <connections>
+                                    <action selector="myHouseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2HY-bc-dxX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eez-fr-SrC">
+                                <rect key="frame" x="56" y="575" width="71" height="30"/>
+                                <state key="normal" title="My school"/>
+                                <connections>
+                                    <action selector="mySchoolButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kvj-pl-WXg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O97-GP-Irg">
+                                <rect key="frame" x="259" y="575" width="60" height="30"/>
+                                <state key="normal" title="$1 Shots"/>
+                                <connections>
+                                    <action selector="oneDollarButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="heO-Pw-S3U"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="O97-GP-Irg" firstAttribute="trailing" secondItem="NtY-c2-goR" secondAttribute="trailing" id="7fI-EW-Y5E"/>
+                            <constraint firstItem="NtY-c2-goR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9T3-CJ-88V"/>
+                            <constraint firstItem="O97-GP-Irg" firstAttribute="top" secondItem="NtY-c2-goR" secondAttribute="bottom" constant="8" id="I40-0N-zL2"/>
+                            <constraint firstItem="eez-fr-SrC" firstAttribute="leading" secondItem="NtY-c2-goR" secondAttribute="leading" id="NrH-kp-dXw"/>
+                            <constraint firstItem="eez-fr-SrC" firstAttribute="top" secondItem="NtY-c2-goR" secondAttribute="bottom" constant="8" id="WGB-e8-Zme"/>
+                            <constraint firstItem="NtY-c2-goR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="buv-yu-gEI"/>
+                            <constraint firstItem="FX8-vF-owX" firstAttribute="top" secondItem="NtY-c2-goR" secondAttribute="bottom" constant="7.5" id="egz-yI-fRk"/>
+                            <constraint firstItem="FX8-vF-owX" firstAttribute="top" secondItem="NtY-c2-goR" secondAttribute="bottom" constant="8" id="glw-I6-PHX"/>
+                            <constraint firstItem="FX8-vF-owX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hdn-0f-2A1"/>
+                            <constraint firstItem="NtY-c2-goR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jzn-Fz-K0J"/>
+                            <constraint firstItem="NtY-c2-goR" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="mak-07-weg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="NtY-c2-goR" id="5I7-qA-ly7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
