@@ -8,7 +8,10 @@
 
 #import "AddReminderViewController.h"
 
-@interface AddReminderViewController ()
+@interface AddReminderViewController ()<UITextFieldDelegate>
+
+@property(weak, nonatomic) UITextField *locationNameTextField;
+@property(weak, nonatomic) UITextField *locationRadiusTextField;
 
 @end
 
@@ -21,6 +24,11 @@
     NSLog(@"Annotation Title:%@", self.annotationTitle);
     NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
     
+}
+- (IBAction)locationNameTextField:(UITextField *)sender {
+    
+}
+- (IBAction)locationRadiusTextField:(UITextField *)sender {
 }
 
 @end

@@ -12,22 +12,14 @@
 
 
 @protocol LocationControllerDelegate <NSObject>
-
 @required
 -(void)locationControllerUpdatedLocation:(CLLocation *)location;
 @end
 
 @interface LocationController : NSObject
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *location;
 @property (weak, nonatomic) id delegate;
 
 +(LocationController *)shared;
-
-
-
-
-- (void)locationControllerUpdatedLocation:(CLLocation *)location;
 
 @end

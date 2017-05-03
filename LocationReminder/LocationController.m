@@ -12,10 +12,13 @@
 
 @import MapKit;
 
+@interface LocationController () <CLLocationManagerDelegate>
+@property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@end
+
 @implementation LocationController
 
-@synthesize locationManager;
-@synthesize location;
 
 + (LocationController *)shared {
     static LocationController *shared = nil;
@@ -27,16 +30,11 @@
     return shared;
 }
 
-- (LocationController *)init {
+- (instancetype)init {
     self = [super init];
-    locationManager = [[CLLocationManager alloc]init];
-    location = [[CLLocation alloc]init];
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.location = [[CLLocation alloc]init];
     return self;
-}
-
--(void)locationControllerUpdatedLocation:(CLLocation *)location{
-    
-    
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{

@@ -13,7 +13,7 @@
 @import MapKit;
 
 
-@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate>
+@interface ViewController () <MKMapViewDelegate, LocationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 //core location

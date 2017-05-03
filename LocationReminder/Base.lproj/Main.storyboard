@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -92,7 +93,37 @@
                     <view key="view" contentMode="scaleToFill" id="txf-wd-FJl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xg4-Q8-6ta">
+                                <rect key="frame" x="36" y="335" width="303" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="locationRadiusTextField:" destination="T7O-qc-xSK" eventType="editingDidEnd" id="gqd-uD-zPC"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GIg-x3-bTC">
+                                <rect key="frame" x="36" y="205" width="303" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="locationNameTextField:" destination="T7O-qc-xSK" eventType="editingDidEnd" id="Imq-L0-JB6"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GIg-x3-bTC" firstAttribute="leading" secondItem="txf-wd-FJl" secondAttribute="leadingMargin" constant="20" id="1IC-BL-Wec"/>
+                            <constraint firstItem="xg4-Q8-6ta" firstAttribute="centerX" secondItem="txf-wd-FJl" secondAttribute="centerX" id="9an-yU-Hq5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xg4-Q8-6ta" secondAttribute="trailing" constant="20" id="EkN-fq-h9t"/>
+                            <constraint firstItem="xg4-Q8-6ta" firstAttribute="top" secondItem="GIg-x3-bTC" secondAttribute="bottom" constant="100" id="gGe-bl-jUf"/>
+                            <constraint firstItem="xg4-Q8-6ta" firstAttribute="leading" secondItem="txf-wd-FJl" secondAttribute="leadingMargin" constant="20" id="iVe-ib-oEa"/>
+                            <constraint firstItem="GIg-x3-bTC" firstAttribute="top" secondItem="pMi-kw-ojw" secondAttribute="bottom" constant="141" id="kRO-EG-2mb"/>
+                            <constraint firstItem="GIg-x3-bTC" firstAttribute="centerX" secondItem="txf-wd-FJl" secondAttribute="centerX" id="pCu-Bn-Ccp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GIg-x3-bTC" secondAttribute="trailing" constant="20" id="xXl-FC-Nyt"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRA-g1-Oqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
