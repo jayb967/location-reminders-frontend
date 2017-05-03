@@ -21,5 +21,7 @@
 @property (weak, nonatomic) id delegate;
 
 +(LocationController *)shared;
+-(void)requestPersmissions;
+
 
 @end

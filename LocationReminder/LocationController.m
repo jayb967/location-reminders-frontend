@@ -15,6 +15,7 @@
 @interface LocationController () <CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+//@property (strong, nonatomic) CLLocationManager *requestPersmissions;
 @end
 
 @implementation LocationController
@@ -33,11 +34,24 @@
 - (instancetype)init {
     self = [super init];
     self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
     self.location = [[CLLocation alloc]init];
     return self;
 }
 
+-(void)requestPersmissions{
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 100; //meters(how often it will updated so every movement of 100 meters it will update)
+    
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+    
+    [self.locationManager startUpdatingLocation];
+}
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
     CLLocation *location = locations.lastObject;
     
     [self.delegate locationControllerUpdatedLocation:location];

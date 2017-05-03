@@ -11,13 +11,14 @@
 #import "LocationController.h"
 @import Parse;
 @import MapKit;
+@import ParseUI;
 
 
-@interface ViewController () <MKMapViewDelegate, LocationControllerDelegate>
+@interface ViewController () <MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 //core location
-@property (strong, nonatomic) CLLocationManager *locationManager;
+//@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -25,12 +26,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self requestPersmissions];
-    self.mapView.showsUserLocation = YES;
+    [[LocationController shared] requestPersmissions];
+//    [self requestPersmissions];
+    self.mapView.showsUserLocation = YES;   
     self.mapView.delegate = self;
+    [self fetchReminders];
     
-    self.locationManager.delegate = self;
+    [LocationController shared].delegate = self;
+    // colon on the selector mean that it takes in an argument
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+    
+    [PFUser logOut];
+    
+    if (![PFUser currentUser]) {
+        PFLogInViewController *loginViewController = [[PFLogInViewController alloc]init];
+        
+        //define both protocols
+        loginViewController.delegate = self;
+        
+        loginViewController.signUpController.delegate = self;
+        
+        loginViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook
+        |PFLogInFieldsPasswordForgotten;
+        
+        loginViewController.logInView.logo = [[UIView alloc]init];
+        
+        loginViewController.logInView.backgroundColor = [UIColor whiteColor];
+        
+        
+        [self presentViewController:loginViewController animated:YES completion:nil];
+    }
+    
     
     
 //    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
@@ -63,17 +89,30 @@
 //    }];
 }
 
--(void)requestPersmissions{
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 100; //meters(how often it will updated so every movement of 100 meters it will update)
-    
-    self.locationManager.delegate = self;
-    
-    [self.locationManager requestAlwaysAuthorization];
-    
-    [self.locationManager startUpdatingLocation];
+-(void)reminderSavedToParse:(id)sender{
+    NSLog(@"Do some stuff since out new reminder was saved");
+//    [self mySchoolButtonPressed:sender];//this will simulate preesing the school button
 }
+
+-(void)fetchReminders{
+        //creating a query to server to show the one line above.
+        PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+        //this will find all the objects and spit them all out
+    
+        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"%@", error.localizedDescription);
+            } else {
+                NSLog(@"Query Results %@", objects);
+                //spits this out
+    //            Query Results (
+    //            "<TestObject: 0x6080000b0bc0, objectId: XWZrBNYWwi, localId: (null)> {\n    testname = \"Jay Balderas\";\n}"
+    //            )
+            }
+        }];
+}
+
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [super prepareForSegue:segue sender:sender];
@@ -87,9 +126,28 @@
         newReminderViewController.annotationTitle = annotationView.annotation.title;
         newReminderViewController.title = annotationView.annotation.title;
         
+        //denotes weak reference
+        __weak typeof(self) bruce = self;
+        
+        //we now have access to mkcircle
+        newReminderViewController.completion = ^(MKCircle *circle) {
+            //makes a strong version of bruce when self is called in here
+            //only needed when using "self" inside a block
+            // they are to avoid retain cycles when using blocks
+            __strong typeof(bruce) hulk = bruce;
+            
+            [hulk.mapView removeAnnotation:annotationView.annotation];
+            [hulk.mapView addOverlay:circle];
+        };
+        
     }
 }
 
+//usually gets called with ARC
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderSavedToParse" object:nil];
+    
+}
 
 
 - (IBAction)myHouseButtonPressed:(id)sender {
@@ -180,6 +238,19 @@
     
     
 }
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+    
+    renderer.strokeColor = [UIColor greenColor];
+    renderer.fillColor = [UIColor blueColor];
+    renderer.alpha = 0.25;
+    
+    
+    
+    return renderer;
+}
+
 -(void)locationControllerUpdatedLocation:(CLLocation *)location{
     NSLog(@"Coordinate: %f, %f - Altitude:%f", location.coordinate.latitude, location.coordinate.longitude, location.altitude);
     
@@ -187,6 +258,15 @@
     
     [self.mapView setRegion:region animated:YES];
 }
+
+-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 
 @end
