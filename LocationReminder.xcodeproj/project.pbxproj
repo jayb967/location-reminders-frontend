@@ -22,6 +22,7 @@
 		2835E6561EB92E230034EE73 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2835E6551EB92E230034EE73 /* LocationController.m */; };
 		2835E65C1EBA465D0034EE73 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2835E65B1EBA465C0034EE73 /* Reminder.m */; };
 		2835E65E1EBA5E720034EE73 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2835E65D1EBA5E720034EE73 /* ParseUI.framework */; };
+		2835E6611EBAB49B0034EE73 /* SendLocationTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2835E6601EBAB49B0034EE73 /* SendLocationTextController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,8 @@
 		2835E65A1EBA465C0034EE73 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
 		2835E65B1EBA465C0034EE73 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 		2835E65D1EBA5E720034EE73 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		2835E65F1EBAB49B0034EE73 /* SendLocationTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendLocationTextController.h; sourceTree = "<group>"; };
+		2835E6601EBAB49B0034EE73 /* SendLocationTextController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendLocationTextController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +145,8 @@
 				2835E6371EB7AC120034EE73 /* ViewController.m */,
 				2835E6541EB92E230034EE73 /* LocationController.h */,
 				2835E6551EB92E230034EE73 /* LocationController.m */,
+				2835E65F1EBAB49B0034EE73 /* SendLocationTextController.h */,
+				2835E6601EBAB49B0034EE73 /* SendLocationTextController.m */,
 				2835E6511EB8FF180034EE73 /* AddReminderViewController.h */,
 				2835E6521EB8FF180034EE73 /* AddReminderViewController.m */,
 			);
@@ -241,6 +246,7 @@
 				2835E6531EB8FF180034EE73 /* AddReminderViewController.m in Sources */,
 				2835E6381EB7AC120034EE73 /* ViewController.m in Sources */,
 				2835E6351EB7AC120034EE73 /* AppDelegate.m in Sources */,
+				2835E6611EBAB49B0034EE73 /* SendLocationTextController.m in Sources */,
 				2835E6321EB7AC120034EE73 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

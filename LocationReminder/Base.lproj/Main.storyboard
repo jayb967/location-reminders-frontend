@@ -100,7 +100,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="locationNameTextField:" destination="T7O-qc-xSK" eventType="editingDidEnd" id="Imq-L0-JB6"/>
+                                    <action selector="locationNameTextField:" destination="T7O-qc-xSK" eventType="editingDidEnd" id="FEf-Jo-say"/>
                                 </connections>
                             </textField>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="5" maxValue="2000" translatesAutoresizingMaskIntoConstraints="NO" id="k3B-iI-O78">
@@ -115,17 +115,37 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-gt-9qQ">
+                                <rect key="frame" x="66" y="409" width="243" height="30"/>
+                                <state key="normal" title="Save Region"/>
+                                <connections>
+                                    <action selector="saveRegionButtonPressed:" destination="T7O-qc-xSK" eventType="touchUpInside" id="X7g-6M-10z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKh-A4-mFq">
+                                <rect key="frame" x="56" y="494" width="263" height="30"/>
+                                <state key="normal" title="Text to friend"/>
+                                <connections>
+                                    <action selector="textSendPressed:" destination="T7O-qc-xSK" eventType="touchUpInside" id="T6a-nv-uG8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GIg-x3-bTC" firstAttribute="leading" secondItem="txf-wd-FJl" secondAttribute="leadingMargin" constant="20" id="1IC-BL-Wec"/>
+                            <constraint firstItem="cDm-gt-9qQ" firstAttribute="leading" secondItem="txf-wd-FJl" secondAttribute="leadingMargin" constant="50" id="1eg-wc-h8Y"/>
                             <constraint firstItem="k3B-iI-O78" firstAttribute="top" secondItem="iyE-4o-xTi" secondAttribute="bottom" constant="10" id="2Te-gW-EmH"/>
+                            <constraint firstItem="tKh-A4-mFq" firstAttribute="leading" secondItem="txf-wd-FJl" secondAttribute="leadingMargin" constant="40" id="DIC-cP-72h"/>
                             <constraint firstItem="k3B-iI-O78" firstAttribute="leading" secondItem="txf-wd-FJl" secondAttribute="leadingMargin" constant="40" id="Gth-4a-tcC"/>
                             <constraint firstItem="k3B-iI-O78" firstAttribute="centerY" secondItem="txf-wd-FJl" secondAttribute="centerY" id="UgW-cI-WaE"/>
+                            <constraint firstItem="cDm-gt-9qQ" firstAttribute="top" secondItem="k3B-iI-O78" secondAttribute="bottom" constant="60" id="fWh-Ao-OhQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cDm-gt-9qQ" secondAttribute="trailing" constant="50" id="hgJ-VP-uo3"/>
                             <constraint firstItem="k3B-iI-O78" firstAttribute="top" secondItem="GIg-x3-bTC" secondAttribute="bottom" constant="150" id="jsh-Tg-ZSY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tKh-A4-mFq" secondAttribute="trailing" constant="40" id="llf-RI-ewT"/>
                             <constraint firstItem="iyE-4o-xTi" firstAttribute="leading" secondItem="txf-wd-FJl" secondAttribute="leading" constant="40" id="oNP-jQ-ybD"/>
                             <constraint firstItem="GIg-x3-bTC" firstAttribute="centerX" secondItem="txf-wd-FJl" secondAttribute="centerX" id="pCu-Bn-Ccp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="k3B-iI-O78" secondAttribute="trailing" constant="40" id="pV0-wn-9ix"/>
+                            <constraint firstItem="tKh-A4-mFq" firstAttribute="top" secondItem="cDm-gt-9qQ" secondAttribute="bottom" constant="55" id="sQx-Zj-pd5"/>
                             <constraint firstAttribute="trailing" secondItem="iyE-4o-xTi" secondAttribute="trailing" constant="40" id="w9g-Su-8EX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GIg-x3-bTC" secondAttribute="trailing" constant="20" id="xXl-FC-Nyt"/>
                         </constraints>

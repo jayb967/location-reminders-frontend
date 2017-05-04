@@ -35,8 +35,8 @@
     [LocationController shared].delegate = self;
     // colon on the selector mean that it takes in an argument
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
-    
-    [PFUser logOut];
+    //logs me out every time
+//    [PFUser logOut];
     
     if (![PFUser currentUser]) {
         PFLogInViewController *loginViewController = [[PFLogInViewController alloc]init];
