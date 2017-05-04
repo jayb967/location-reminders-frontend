@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @import MapKit;
 @import MessageUI;
+@import ContactsUI;
 
 //          ^ means that it is a block
 typedef void(^NewReminderCreatedCompletion)(MKCircle *);

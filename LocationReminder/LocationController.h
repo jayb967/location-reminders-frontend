@@ -23,5 +23,7 @@
 +(LocationController *)shared;
 -(void)requestPersmissions;
 
+-(void)startMonitoringForRegion:(CLRegion *) region;
+
 
 @end

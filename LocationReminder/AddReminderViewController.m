@@ -8,6 +8,8 @@
 
 #import "AddReminderViewController.h"
 #import "Reminder.h"//access to model object
+
+#import "LocationController.h"
 @import ContactsUI;
 @import MessageUI;
 
@@ -55,18 +57,16 @@
 
 -(void)contactPicker:(CNContactPickerViewController *)picker didSelectContacts:(NSArray<CNContact *> *)contacts{
     self.contactNumber = [[NSMutableArray alloc] init];
-    CNContact *contact=[contacts objectAtIndex:0];
+//    CNContact *contact=[contacts objectAtIndex:0];
+    for (CNContact *contact in contacts ) {
+            NSArray <CNLabeledValue<CNPhoneNumber *> *> *phoneNumber = contact.phoneNumbers;
+            CNLabeledValue<CNPhoneNumber *> *firstPhone = [phoneNumber firstObject];
+            CNPhoneNumber *number = firstPhone.value;
+            NSString *digits = number.stringValue;
+            //-----------------path to contact number----------------------
+            //"<CNContact: 0x1047798a0: identifier=7B542B98-3142-40E0-AC52-C7969A2FC250, givenName=Aaron. LA, familyName=, organizationName=, phoneNumbers=(\n    \"<CNLabeledValue: 0x170a76780: identifier=6CA64F0D-CC2A-4396-9316-9AD5115B5FB3, label=_$!<Mobile>!$_, value=<CNPhoneNumber: 0x17062cb00: countryCode=us, digits=6263783084>>\"\n), emailAddresses=(not fetched), postalAddresses=(not fetched)>"
+            [self.contactNumber addObject:[NSString stringWithFormat:@"%@", digits]];
     
-    for (CNPhoneNumber *phone in contacts) {
-        NSArray <CNLabeledValue<CNPhoneNumber *> *> *phoneNumber = contact.phoneNumbers;
-        CNLabeledValue<CNPhoneNumber *> *firstPhone = [phoneNumber firstObject];
-        CNPhoneNumber *number = firstPhone.value;
-        NSString *digits = number.stringValue;
-        //-----------------path to contact number----------------------
-        //"<CNContact: 0x1047798a0: identifier=7B542B98-3142-40E0-AC52-C7969A2FC250, givenName=Aaron. LA, familyName=, organizationName=, phoneNumbers=(\n    \"<CNLabeledValue: 0x170a76780: identifier=6CA64F0D-CC2A-4396-9316-9AD5115B5FB3, label=_$!<Mobile>!$_, value=<CNPhoneNumber: 0x17062cb00: countryCode=us, digits=6263783084>>\"\n), emailAddresses=(not fetched), postalAddresses=(not fetched)>"
-        
-        
-        [self.contactNumber addObject:[NSString stringWithFormat:@"%@", digits]];
         
     }
     [self sendTextLocation];
@@ -116,6 +116,14 @@
             //            CGFloat radius = 100; //for lab coming from UISlider/UITextField from user
             NSNumber *radius = [NSNumber numberWithInt:self.radiusSlider.value];
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius: [radius doubleValue]];
+            
+            //checking to see if user allows to watch for regions
+            if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:[radius doubleValue] identifier:newReminder.name];
+                
+                [LocationController.shared startMonitoringForRegion:region];
+                
+            }
             
             self.completion(circle);//this is handing it the circle defined
             
