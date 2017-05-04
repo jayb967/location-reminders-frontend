@@ -30,7 +30,7 @@
     
 }
 - (IBAction)locationNameTextField:(UITextField *)sender {
-    
+    self.annotationTitle = [NSString stringWithString:self.locationNameTextField.text];
 }
 
 
@@ -42,10 +42,10 @@
 - (IBAction)saveRegionButtonPressed:(UIButton *)sender {
     
     [self newReminderParseSave];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)textSendPressed:(UIButton *)sender {
-    [self newReminderParseSave];
     CNContactPickerViewController *contactPick = [[CNContactPickerViewController alloc]init];
     contactPick.delegate = self;
     contactPick.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
@@ -59,18 +59,18 @@
     
     for (CNPhoneNumber *phone in contacts) {
         NSArray <CNLabeledValue<CNPhoneNumber *> *> *phoneNumber = contact.phoneNumbers;
-                CNLabeledValue<CNPhoneNumber *> *firstPhone = [phoneNumber firstObject];
-                CNPhoneNumber *number = firstPhone.value;
-                NSString *digits = number.stringValue;
+        CNLabeledValue<CNPhoneNumber *> *firstPhone = [phoneNumber firstObject];
+        CNPhoneNumber *number = firstPhone.value;
+        NSString *digits = number.stringValue;
         //-----------------path to contact number----------------------
         //"<CNContact: 0x1047798a0: identifier=7B542B98-3142-40E0-AC52-C7969A2FC250, givenName=Aaron. LA, familyName=, organizationName=, phoneNumbers=(\n    \"<CNLabeledValue: 0x170a76780: identifier=6CA64F0D-CC2A-4396-9316-9AD5115B5FB3, label=_$!<Mobile>!$_, value=<CNPhoneNumber: 0x17062cb00: countryCode=us, digits=6263783084>>\"\n), emailAddresses=(not fetched), postalAddresses=(not fetched)>"
-
+        
         
         [self.contactNumber addObject:[NSString stringWithFormat:@"%@", digits]];
         
     }
     [self sendTextLocation];
-    }
+}
 
 -(void)sendTextLocation{
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
@@ -87,11 +87,8 @@
         [self presentViewController:controller animated:YES completion:NULL];
         
     }
-
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
 
 -(void)contactPickerDidCancel:(CNContactPickerViewController *)picker{
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -103,7 +100,6 @@
 
 -(void)newReminderParseSave{
     Reminder *newReminder = [Reminder object];
-    if (!newReminder) {
     newReminder.name = self.annotationTitle;
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     
@@ -126,7 +122,6 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
-    }
     
 }
 
