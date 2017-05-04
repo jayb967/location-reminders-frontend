@@ -54,8 +54,6 @@
 }
 
 -(void)contactPicker:(CNContactPickerViewController *)picker didSelectContacts:(NSArray<CNContact *> *)contacts{
-    
-    
     self.contactNumber = [[NSMutableArray alloc] init];
     CNContact *contact=[contacts objectAtIndex:0];
     
@@ -73,6 +71,7 @@
     }
     [self sendTextLocation];
     }
+
 -(void)sendTextLocation{
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     controller.recipients = self.contactNumber;
@@ -83,12 +82,7 @@
     
     if([MFMessageComposeViewController canSendText])
     {
-        NSLog(@"-----------------------------------------");
-        NSLog(@"message should pop up here");
-        
-        //        [controller setRecipients:self.contactNumber];
         [controller setBody:theLocation];
-        
         [self dismissViewControllerAnimated:YES completion:nil];
         [self presentViewController:controller animated:YES completion:NULL];
         
