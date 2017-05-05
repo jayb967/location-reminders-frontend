@@ -8,10 +8,23 @@
 
 #import <UIKit/UIKit.h>
 @import MapKit;
+@import MessageUI;
+@import ContactsUI;
 
-@interface AddReminderViewController : UIViewController
+//          ^ means that it is a block
+typedef void(^NewReminderCreatedCompletion)(MKCircle *);
+
+
+
+@interface AddReminderViewController : UIViewController<MFMessageComposeViewControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
+@property (weak, nonatomic) IBOutlet UISlider *radiusSlider;
 
 @property(strong, nonatomic) NSString *annotationTitle;
 @property(nonatomic) CLLocationCoordinate2D coordinate;//does not need strong or weak because struct
+@property(strong, nonatomic) NSMutableArray *contactNumber;
+
+@property(strong, nonatomic) NewReminderCreatedCompletion completion;
 
 @end
